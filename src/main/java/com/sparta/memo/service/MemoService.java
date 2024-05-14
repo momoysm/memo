@@ -4,14 +4,26 @@ import com.sparta.memo.dto.MemoRequestDto;
 import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.entity.Memo;
 import com.sparta.memo.repository.MemoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class MemoService {
+@Service
+public class MemoService { //memoService라고 bean으로 저장됨
 
     private final MemoRepository memoRepository;
 
+    @Autowired
     public MemoService(MemoRepository memoRepository) {
+        //매개변수 ApplicationContext context(IoC 컨테이너라고 보면된다)
+        //1.'Bean' 이름으로 가져온다
+        //MemoRepository memoRepository = (MemoRepository) context.getBean("memoRepository");
+        //this.memoRepository = memoRepository;
+
+        //2. 'Bean' 클래스 형식으로 가져오기
+        //MemoRepository memoRepository = (MemoRepository) context.getBean(MemoRepository.class);
+        //this.memoRepository = memoRepository;
         this.memoRepository = memoRepository;
     }
 
